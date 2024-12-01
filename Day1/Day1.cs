@@ -71,5 +71,23 @@ namespace AdventOfCode {
 		}
 
 
+		public int CalculateSimillarityScore()
+		{
+			int simScore = 0;
+
+			var distinctFirstList=_listOfNumberColumns[0].Distinct().ToList();
+
+			for (int i = 0; i < distinctFirstList.Count; i++)
+			{
+				for (int j = 0; j < _listOfNumberColumns[1].Count; j++)
+				{
+					if (distinctFirstList[i] == _listOfNumberColumns[1][j])
+						simScore += _listOfNumberColumns[1][j];
+				}
+			}
+
+			return simScore;
+		}
+
 	}
 }

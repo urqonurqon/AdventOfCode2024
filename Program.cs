@@ -48,6 +48,8 @@ namespace AdventOfCode2024 {
 				day1.ParseFileIntoListsAndSort();
 
 				Console.WriteLine("Sum of Sorted Array Differences is: " + day1.SumOfDifferences());
+
+				Console.WriteLine("Simillarity Score is: " + day1.CalculateSimillarityScore());
 			}
 		}
 
