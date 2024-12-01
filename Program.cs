@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using AdventOfCode;
@@ -29,12 +29,20 @@ namespace AdventOfCode2024 {
 				if (!Directory.Exists(methodName))
 				{
 					Directory.CreateDirectory(dataPath + methodName);
-					var fileStream=File.Create(dataPath + methodName + "\\" + methodName + ".cs");
+					var fileStream = File.Create(dataPath + methodName + "\\" + methodName + ".cs");
 					fileStream.Close();
 					File.WriteAllText(dataPath + methodName + "\\" + methodName + ".cs", "\r\n\r\nnamespace AdventOfCode " +
 						"{\r\n\tpublic class " + methodName + " {\r\n\r\n\r\n\r\n\t\tpublic " + methodName + "()\r\n\t\t" +
 						"{\r\n\t\r\n\t\t}\r\n\r\n\t\r\n\r\n\t}" +
 						"\r\n}");
+
+					var programCode = File.ReadAllText(dataPath + "Program.cs");
+					programCode = programCode.Remove(programCode.LastIndexOf("}"));
+					programCode = programCode.Remove(programCode.LastIndexOf("}"));
+
+					programCode += "\n\t\tstatic void " + methodName + "()\r\n\t\t{\r\n\r\n\t\t}\r\n\t}\r\n}";
+
+					File.WriteAllText(dataPath + "Program.cs", programCode);
 				}
 			}
 			else
@@ -44,7 +52,7 @@ namespace AdventOfCode2024 {
 				sw.Start();
 				methodToInvoke.Invoke(null, null);
 				sw.Stop();
-				Console.WriteLine(sw.Elapsed.TotalSeconds);
+				Console.WriteLine("Runtime: " + sw.Elapsed.TotalSeconds + "s.\n");
 			}
 
 			Console.WriteLine("Press any key..");
@@ -69,6 +77,14 @@ namespace AdventOfCode2024 {
 			}
 		}
 
-	}
+		static void Day2()
+		{
 
+		}
+
+		static void Day3()
+		{
+
+		}
+	}
 }
