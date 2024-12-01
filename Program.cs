@@ -12,8 +12,9 @@ namespace AdventOfCode2024 {
 		{
 			string? dataPath = "C:\\Users\\urqon\\source\\repos\\AdventOfCode2024\\";
 
-			Console.WriteLine("Choose day: \n");
+			Console.WriteLine("Choose day or create a new one: \n");
 			string? day = Console.ReadLine();
+
 
 			if (!int.TryParse(day, out int dayInNumbers))
 			{
@@ -25,21 +26,33 @@ namespace AdventOfCode2024 {
 
 			if (methodToInvoke == null)
 			{
-				Console.WriteLine("Wrong Input But how did you get here i already check for that");
+				if (!Directory.Exists(methodName))
+				{
+					Directory.CreateDirectory(dataPath + methodName);
+					var fileStream=File.Create(dataPath + methodName + "\\" + methodName + ".cs");
+					fileStream.Close();
+					File.WriteAllText(dataPath + methodName + "\\" + methodName + ".cs", "\r\n\r\nnamespace AdventOfCode " +
+						"{\r\n\tpublic class " + methodName + " {\r\n\r\n\r\n\r\n\t\tpublic " + methodName + "()\r\n\t\t" +
+						"{\r\n\t\r\n\t\t}\r\n\r\n\t\r\n\r\n\t}" +
+						"\r\n}");
+				}
 			}
 			else
 			{
 				_dayDataPath = dataPath + methodName + "\\";
+				Stopwatch sw = new Stopwatch();
+				sw.Start();
 				methodToInvoke.Invoke(null, null);
+				sw.Stop();
+				Console.WriteLine(sw.Elapsed.TotalSeconds);
 			}
 
+			Console.WriteLine("Press any key..");
 			Console.ReadKey();
 		}
 
 		static void Day1()
 		{
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
 			Day1 day1;
 
 			string? filePath = _dayDataPath + "Input.txt";
@@ -54,8 +67,6 @@ namespace AdventOfCode2024 {
 
 				Console.WriteLine("Simillarity Score is: " + day1.CalculateSimillarityScore());
 			}
-			sw.Stop();
-			Console.WriteLine(sw.Elapsed.TotalSeconds);
 		}
 
 	}
