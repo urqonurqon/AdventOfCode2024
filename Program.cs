@@ -76,15 +76,5 @@ namespace AdventOfCode2024 {
 				Console.WriteLine("Simillarity Score is: " + day1.CalculateSimillarityScore());
 			}
 		}
-
-		static void Day2()
-		{
-
-		}
-
-		static void Day3()
-		{
-
-		}
 	}
 }
