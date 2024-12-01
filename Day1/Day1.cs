@@ -6,7 +6,7 @@ namespace AdventOfCode {
 		private string[] _lines;
 
 		private List<List<int>> _listOfNumberColumns = new List<List<int>>();
-		private List<Tuple<int, int>> _listOfPairs = new List<Tuple<int, int>>();
+		private List<Tuple<int, int>> _sortedListOfPairs = new List<Tuple<int, int>>();
 
 		private const int _numberOfCollumns = 2;
 		public Day1(string path)
@@ -53,7 +53,7 @@ namespace AdventOfCode {
 
 			for (int i = 0; i < _listOfNumberColumns[0].Count; i++)
 			{
-				_listOfPairs.Add(new Tuple<int, int>(_listOfNumberColumns[0][i], _listOfNumberColumns[1][i]));
+				_sortedListOfPairs.Add(new Tuple<int, int>(_listOfNumberColumns[0][i], _listOfNumberColumns[1][i]));
 			}
 
 		}
@@ -62,9 +62,9 @@ namespace AdventOfCode {
 		{
 			int sum = 0;
 
-			for (int i = 0; i < _listOfPairs.Count; i++)
+			for (int i = 0; i < _sortedListOfPairs.Count; i++)
 			{
-				var difference = Math.Abs(_listOfPairs[i].Item1 - _listOfPairs[i].Item2);
+				var difference = Math.Abs(_sortedListOfPairs[i].Item1 - _sortedListOfPairs[i].Item2);
 				sum += difference;
 			}
 			return sum;
@@ -75,14 +75,14 @@ namespace AdventOfCode {
 		{
 			int simScore = 0;
 
-			var distinctFirstList=_listOfNumberColumns[0].Distinct().ToList();
-
-			for (int i = 0; i < distinctFirstList.Count; i++)
+			for (int i = 0; i < _listOfNumberColumns[0].Count; i++)
 			{
 				for (int j = 0; j < _listOfNumberColumns[1].Count; j++)
 				{
-					if (distinctFirstList[i] == _listOfNumberColumns[1][j])
+					if (_listOfNumberColumns[0][i] == _listOfNumberColumns[1][j])
 						simScore += _listOfNumberColumns[1][j];
+					if (_listOfNumberColumns[1][j] > _listOfNumberColumns[0][i])
+						break;
 				}
 			}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using AdventOfCode;
 
@@ -37,6 +38,8 @@ namespace AdventOfCode2024 {
 
 		static void Day1()
 		{
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
 			Day1 day1;
 
 			string? filePath = _dayDataPath + "Input.txt";
@@ -51,6 +54,8 @@ namespace AdventOfCode2024 {
 
 				Console.WriteLine("Simillarity Score is: " + day1.CalculateSimillarityScore());
 			}
+			sw.Stop();
+			Console.WriteLine(sw.Elapsed.TotalSeconds);
 		}
 
 	}
