@@ -7,6 +7,7 @@ namespace AdventOfCode2024 {
 	public class Program {
 
 		static string? _dayDataPath;
+		static string? _methodName;
 
 		static void Main(string[] args)
 		{
@@ -31,6 +32,8 @@ namespace AdventOfCode2024 {
 					Directory.CreateDirectory(dataPath + methodName);
 					var fileStream = File.Create(dataPath + methodName + "\\" + methodName + ".cs");
 					fileStream.Close();
+					fileStream = File.Create(dataPath + methodName + "\\" + "Input" + methodName + ".txt");
+					fileStream.Close();
 					File.WriteAllText(dataPath + methodName + "\\" + methodName + ".cs", "\r\n\r\nnamespace AdventOfCode " +
 						"{\r\n\tpublic class " + methodName + " {\r\n\r\n\r\n\r\n\t\tpublic " + methodName + "()\r\n\t\t" +
 						"{\r\n\t\r\n\t\t}\r\n\r\n\t\r\n\r\n\t}" +
@@ -48,6 +51,7 @@ namespace AdventOfCode2024 {
 			else
 			{
 				_dayDataPath = dataPath + methodName + "\\";
+				_methodName = methodName;
 				Stopwatch sw = new Stopwatch();
 				sw.Start();
 				methodToInvoke.Invoke(null, null);
@@ -63,7 +67,7 @@ namespace AdventOfCode2024 {
 		{
 			Day1 day1;
 
-			string? filePath = _dayDataPath + "Input.txt";
+			string? filePath = _dayDataPath + "Input" + _methodName+".txt";
 
 			if (filePath != null)
 			{
@@ -74,6 +78,20 @@ namespace AdventOfCode2024 {
 				Console.WriteLine("Sum of Sorted Array Differences is: " + day1.SumOfDifferences());
 
 				Console.WriteLine("Simillarity Score is: " + day1.CalculateSimillarityScore());
+			}
+		}
+
+		static void Day2()
+		{
+			Day2 day2;
+
+			string? filePath = _dayDataPath + "Input" + _methodName + ".txt";
+
+			if (filePath != null)
+			{
+				day2 = new Day2(filePath);
+
+				Console.WriteLine("Number of safe reports: " + day2.AmountOfSafeRows);
 			}
 		}
 	}
