@@ -11,7 +11,9 @@ namespace AdventOfCode2024 {
 
 		static void Main(string[] args)
 		{
-			string? dataPath = "C:\\Users\\urqon\\source\\repos\\AdventOfCode2024\\";
+			string currentDirectory = Directory.GetCurrentDirectory();
+			string? dataPath = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\"));
+
 
 			Console.WriteLine("Choose day or create a new one: \n");
 			string? day = Console.ReadLine();
@@ -92,6 +94,20 @@ namespace AdventOfCode2024 {
 				day2 = new Day2(filePath);
 
 				Console.WriteLine("Number of safe reports: " + day2.AmountOfSafeRows);
+			}
+		}
+	
+		static void Day3()
+		{
+			Day3 day3;
+
+			string? filePath = _dayDataPath + "Input" + _methodName + ".txt";
+
+			if (filePath != null)
+			{
+				day3 = new Day3(filePath);
+
+				Console.WriteLine("Sum of multiplications: " + day3.SumOfMultiplication);
 			}
 		}
 	}
