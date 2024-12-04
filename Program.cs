@@ -121,7 +121,9 @@ namespace AdventOfCode2024 {
 			{
 				day4 = new Day4(filePath);
 				day4.SearchForWord();
+				day4.SearchForWord2();
 				Console.WriteLine("Number of words appeared: " + day4.Sum);
+				Console.WriteLine("Number of words appeared: " + day4.Sum2);
 			}
 		}
 	
