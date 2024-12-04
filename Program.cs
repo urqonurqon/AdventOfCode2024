@@ -110,5 +110,21 @@ namespace AdventOfCode2024 {
 				Console.WriteLine("Sum of multiplications: " + day3.SumOfMultiplication);
 			}
 		}
+	
+		static void Day4()
+		{
+			Day4 day4;
+
+			string? filePath = _dayDataPath + "Input" + _methodName + ".txt";
+
+			if (filePath != null)
+			{
+				day4 = new Day4(filePath);
+				day4.SearchForWord();
+				Console.WriteLine("Number of words appeared: " + day4.Sum);
+			}
+		}
+	
+	
 	}
 }
