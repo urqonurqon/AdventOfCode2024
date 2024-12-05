@@ -128,5 +128,21 @@ namespace AdventOfCode2024 {
 		}
 	
 	
+	
+		static void Day5()
+		{
+			Day5 day5;
+
+			string? filePath = _dayDataPath + "Input" + _methodName + ".txt";
+
+			if (filePath != null)
+			{
+				day5 = new Day5(filePath);
+
+				
+				Console.WriteLine("Sum of valid pages' middle number: " + day5.GetValidPagesMiddleNumberSum());
+				Console.WriteLine("Sum of corrected pages' middle number: " + day5.SumOfCorrectedPagesMiddleNumber());
+			}
+		}
 	}
 }
