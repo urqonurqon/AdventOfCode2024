@@ -96,13 +96,9 @@ namespace AdventOfCode {
 
 		public int SumOfCorrectedPagesMiddleNumber()
 		{
-			bool f = false;
 			for (int i = 0; i < _incorrectPages.Count; i++)
 			{
 			_SNAPOWGROUPPLAY:
-				if (f) i--;
-				f = false;
-
 				for (int j = 0; j < _incorrectPages[i].Count; j++)
 				{
 					var currentPage = _incorrectPages[i][j];
